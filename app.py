@@ -2,12 +2,14 @@
 import streamlit as st
 from content import LESSONS, SOURCES
 from visuals import show
+from trusted_reading import render as trusted_reading
 
 st.set_page_config(page_title="Food & Nutrition Compass",page_icon="🥗",layout="wide")
 st.title("🥗 Food & Nutrition Compass")
 st.caption("Basics → intermediate → advanced · Practical food choices · Sources reviewed 29 September 2026")
 st.info("Educational guide for everyday meals. Individual needs differ with age, pregnancy, allergies, medications and medical conditions. A clinician or registered dietitian can tailor a treatment plan.")
-names=["🏠 Overview"]+[x["title"] for x in LESSONS]+["🧮 Kitchen tools","📚 Sources","⚖️ Compare approaches","🌿 Ayurveda in the kitchen","🧪 Homeopathy & decisions"]
+LESSON_ICONS=["🌱","🍽️","⚡","💪","🌾","❤️","🔬","💧","🏷️","🧼","🥜","🍳","🛒","🩺","💊"]
+names=["🏠 Overview"]+[f"{icon} {x['title']}" for icon,x in zip(LESSON_ICONS,LESSONS)]+["🧮 Kitchen tools","📚 Sources","⚖️ Compare approaches","🌿 Ayurveda in the kitchen","🧪 Homeopathy & decisions"]
 tabs=st.tabs(names)
 
 with tabs[0]:
@@ -19,6 +21,7 @@ with tabs[0]:
     c.metric("Approach comparison","3 tabs")
     st.dataframe([{"Order":i,"Topic":x["title"],"Level":x["level"],"One-line takeaway":x["takeaway"]} for i,x in enumerate(LESSONS,1)],hide_index=True,use_container_width=True)
     st.markdown("**First action:** choose one ordinary meal and ask what it contains, what is missing, and whether any medical condition changes the choice.")
+    trusted_reading("Overview")
     show("Overview")
 
 for tab,lesson in zip(tabs[1:1+len(LESSONS)],LESSONS):
@@ -34,6 +37,7 @@ for tab,lesson in zip(tabs[1:1+len(LESSONS)],LESSONS):
             if st.checkbox("Reveal practical answer",key="reveal_"+lesson["title"]):st.success(lesson["answer"])
         st.markdown("**Original guidance:** "+" · ".join(f"[{name}]({SOURCES[name]})" for name in lesson["sources"]))
         st.caption("These examples are general education. Avoid changing prescribed treatment based on a meal example.")
+        trusted_reading(lesson["title"],lesson["sources"])
         st.subheader("Animated memory cue")
         show(lesson["title"])
 
@@ -64,6 +68,7 @@ with tabs[-5]:
         b.metric("Total sodium",f"{servings*sodium:g} mg")
         st.caption("Serving-size multiplication is arithmetic, not a judgement that a product is safe for a particular condition.")
     st.markdown(f"[FDA label explanation]({SOURCES['FDA added-sugar label']}) · [WHO healthy-diet guidance]({SOURCES['WHO healthy diet']})")
+    trusted_reading("Kitchen tools")
     show("Kitchen tools")
 
 with tabs[-4]:
@@ -71,6 +76,7 @@ with tabs[-4]:
     st.write("Primary public-health and clinical sources provide the medical and nutrition facts. Indian food examples are grounded in ICMR-NIN guidance. The site is a curated snapshot, not a live advice or diagnosis service.")
     st.dataframe([{"Source":name,"Direct link":url} for name,url in SOURCES.items()],hide_index=True,use_container_width=True,column_config={"Direct link":st.column_config.LinkColumn("Direct link")})
     st.markdown("**How to check a food claim:** identify the actual intervention, human outcome, study quality, possible harms, and whether the result applies to your own situation.")
+    trusted_reading("Sources")
     show("Sources")
 
 with tabs[-3]:
@@ -82,6 +88,7 @@ with tabs[-3]:
         {"Approach":"Homeopathy","Food or living focus":"Remedy system, not a cooking or nutrition framework","Evidence for treating disease":"No reliable evidence of effectiveness for health conditions in major reviews","When useful":"Not a substitute for evidence-based nutrition or needed treatment","How to practice":"Do not delay diagnosis or treatment; discuss any products with clinician"},
     ],hide_index=True,use_container_width=True)
     st.markdown(f"[WHO nutrition]({SOURCES['WHO healthy diet']}) · [NCCIH Ayurveda]({SOURCES['NCCIH Ayurveda']}) · [NCCIH homeopathy]({SOURCES['NCCIH homeopathy']})")
+    trusted_reading("Compare approaches")
     show("Compare approaches")
 
 with tabs[-2]:
@@ -95,6 +102,7 @@ with tabs[-2]:
     ],hide_index=True,use_container_width=True)
     st.markdown(f"[ICMR-NIN food guidance]({SOURCES['ICMR-NIN Indian guidelines']}) · [NCCIH safety and evidence]({SOURCES['NCCIH Ayurveda']})")
     st.caption("Do not discontinue prescribed treatment in favor of a dietary rule or preparation.")
+    trusted_reading("Ayurveda in the kitchen")
     show("Ayurveda in the kitchen")
 
 with tabs[-1]:
@@ -109,4 +117,5 @@ with tabs[-1]:
     }
     st.info(advice[situation])
     st.markdown(f"[NCCIH homeopathy evidence]({SOURCES['NCCIH homeopathy']}) · [NCCIH integrative-health definitions]({SOURCES['NCCIH integrative health']}) · [NIH supplement safety]({SOURCES['NIH supplement basics']})")
+    trusted_reading("Homeopathy and decision guide")
     show("Homeopathy and decision guide")
