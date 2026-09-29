@@ -27,6 +27,7 @@ EXTRA = [
 ("⚖️ Compare approaches", "Use evidence-based nutrition for health decisions", "Don't substitute a remedy for care", "Myth: allopathy/homeopathy are cooking styles. Fact: neither is.", "Evidence and safety for the exact claim", "Compare a specific claim", "NCCIH homeopathy"),
 ("🌿 Ayurveda in the kitchen", "Enjoy suitable traditional meals", "Don't assume herbs/minerals are harmless", "Myth: tradition proves a cure. Fact: outcomes need testing.", "Ingredients, adequacy, interactions", "Review one traditional recipe", "NCCIH Ayurveda"),
 ("🧪 Homeopathy & decisions", "Seek proven care for illness", "Don't delay diagnosis or treatment", "Myth: homeopathy treats disease reliably. Fact: evidence does not support that.", "Clinical outcome, delay and interaction risks", "Check the claimed indication", "NCCIH homeopathy"),
+    ("🧭 Health approaches", "Match the intervention to the condition", "Don't assume a broad label proves effectiveness", "Myth: all approaches work equally. Fact: evidence is practice-specific.", "Benefit, harm and treatment delay", "Compare the exact proposal with a primary source", "NCCIH integrative health"),
 ]
 REFERENCES = [
 ("WHO healthy diet", "Fruit and vegetables", "≥400 g/day for people older than 10", "General population goal; younger children have different amounts", SOURCES["WHO healthy diet"]),

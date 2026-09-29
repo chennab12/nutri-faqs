@@ -4,13 +4,14 @@ from content import LESSONS, SOURCES
 from visuals import show
 from trusted_reading import render as trusted_reading
 from master_cheatsheet import render as master_cheatsheet
+from approaches import render as approaches_comparison
 
 st.set_page_config(page_title="Food & Nutrition Compass",page_icon="🥗",layout="wide")
 st.title("🥗 Food & Nutrition Compass")
 st.caption("Basics → intermediate → advanced · Practical food choices · Sources reviewed 29 September 2026")
 st.info("Educational guide for everyday meals. Individual needs differ with age, pregnancy, allergies, medications and medical conditions. A clinician or registered dietitian can tailor a treatment plan.")
 LESSON_ICONS=["🌱","🍽️","⚡","💪","🌾","❤️","🔬","💧","🏷️","🧼","🥜","🍳","🛒","🩺","💊"]
-names=["📌 Master cheatsheet","🏠 Overview"]+[f"{icon} {x['title']}" for icon,x in zip(LESSON_ICONS,LESSONS)]+["🧮 Kitchen tools","📚 Sources","⚖️ Compare approaches","🌿 Ayurveda in the kitchen","🧪 Homeopathy & decisions"]
+names=["📌 Master cheatsheet","🏠 Overview"]+[f"{icon} {x['title']}" for icon,x in zip(LESSON_ICONS,LESSONS)]+["🧮 Kitchen tools","📚 Sources","⚖️ Compare approaches","🌿 Ayurveda in the kitchen","🧪 Homeopathy & decisions","🧭 Health approaches"]
 tabs=st.tabs(names)
 
 with tabs[0]:
@@ -45,7 +46,7 @@ for tab,lesson in zip(tabs[2:2+len(LESSONS)],LESSONS):
         st.subheader("Animated memory cue")
         show(lesson["title"])
 
-with tabs[-5]:
+with tabs[-6]:
     st.header("🧮 Kitchen tools")
     st.write("Estimates make a meal easier to inspect. They do not prescribe a personal calorie or nutrient target.")
     tool=st.selectbox("Choose a tool",["Meal balance sketch","Macronutrient energy estimate","Package label portions"])
@@ -75,7 +76,7 @@ with tabs[-5]:
     trusted_reading("Kitchen tools")
     show("Kitchen tools")
 
-with tabs[-4]:
+with tabs[-5]:
     st.header("📚 Sources and method")
     st.write("Primary public-health and clinical sources provide the medical and nutrition facts. Indian food examples are grounded in ICMR-NIN guidance. The site is a curated snapshot, not a live advice or diagnosis service.")
     st.dataframe([{"Source":name,"Direct link":url} for name,url in SOURCES.items()],hide_index=True,use_container_width=True,column_config={"Direct link":st.column_config.LinkColumn("Direct link")})
@@ -83,7 +84,7 @@ with tabs[-4]:
     trusted_reading("Sources")
     show("Sources")
 
-with tabs[-3]:
+with tabs[-4]:
     st.header("⚖️ Conventional nutrition, Ayurveda and homeopathy")
     st.info("“Allopathy” is an informal label for conventional medicine; it is not a style of cooking. Homeopathy also has no distinct evidence-based cooking method. Compare the health claims and practices on their own merits.")
     st.dataframe([
@@ -95,7 +96,7 @@ with tabs[-3]:
     trusted_reading("Compare approaches")
     show("Compare approaches")
 
-with tabs[-2]:
+with tabs[-3]:
     st.header("🌿 Ayurveda in the kitchen")
     st.write("A traditional food routine can be enjoyable and easier to sustain. Judge a meal by ingredients, adequacy, portions, safety and how it fits the person's health needs. A spice or meal pattern is not, by itself, a treatment for diabetes, high cholesterol or another illness.")
     st.dataframe([
@@ -109,7 +110,7 @@ with tabs[-2]:
     trusted_reading("Ayurveda in the kitchen")
     show("Ayurveda in the kitchen")
 
-with tabs[-1]:
+with tabs[-2]:
     st.header("🧪 Homeopathy and a practical decision guide")
     st.write("Homeopathy is a remedy system, not a cooking style. A healthy meal remains a healthy meal regardless of the label attached to it. Major evidence reviews have not found reliable evidence that homeopathy treats health conditions.")
     situation=st.selectbox("What is your decision?",["Everyday healthy meal","Documented nutrient deficiency","Diabetes, heart or kidney condition","Herbal or homeopathic product claim"])
@@ -123,3 +124,6 @@ with tabs[-1]:
     st.markdown(f"[NCCIH homeopathy evidence]({SOURCES['NCCIH homeopathy']}) · [NCCIH integrative-health definitions]({SOURCES['NCCIH integrative health']}) · [NIH supplement safety]({SOURCES['NIH supplement basics']})")
     trusted_reading("Homeopathy and decision guide")
     show("Homeopathy and decision guide")
+
+with tabs[-1]:
+    approaches_comparison()
