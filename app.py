@@ -3,16 +3,20 @@ import streamlit as st
 from content import LESSONS, SOURCES
 from visuals import show
 from trusted_reading import render as trusted_reading
+from master_cheatsheet import render as master_cheatsheet
 
 st.set_page_config(page_title="Food & Nutrition Compass",page_icon="🥗",layout="wide")
 st.title("🥗 Food & Nutrition Compass")
 st.caption("Basics → intermediate → advanced · Practical food choices · Sources reviewed 29 September 2026")
 st.info("Educational guide for everyday meals. Individual needs differ with age, pregnancy, allergies, medications and medical conditions. A clinician or registered dietitian can tailor a treatment plan.")
 LESSON_ICONS=["🌱","🍽️","⚡","💪","🌾","❤️","🔬","💧","🏷️","🧼","🥜","🍳","🛒","🩺","💊"]
-names=["🏠 Overview"]+[f"{icon} {x['title']}" for icon,x in zip(LESSON_ICONS,LESSONS)]+["🧮 Kitchen tools","📚 Sources","⚖️ Compare approaches","🌿 Ayurveda in the kitchen","🧪 Homeopathy & decisions"]
+names=["📌 Master cheatsheet","🏠 Overview"]+[f"{icon} {x['title']}" for icon,x in zip(LESSON_ICONS,LESSONS)]+["🧮 Kitchen tools","📚 Sources","⚖️ Compare approaches","🌿 Ayurveda in the kitchen","🧪 Homeopathy & decisions"]
 tabs=st.tabs(names)
 
 with tabs[0]:
+    master_cheatsheet()
+
+with tabs[1]:
     st.subheader("A useful food decision in four steps")
     st.write("Start with a varied pattern, build a satisfying meal, check portions and preparation, then adapt to your health needs. Familiar foods such as rice, dal, idli, vegetables, fruit and curd can all fit.")
     a,b,c=st.columns(3)
@@ -24,7 +28,7 @@ with tabs[0]:
     trusted_reading("Overview")
     show("Overview")
 
-for tab,lesson in zip(tabs[1:1+len(LESSONS)],LESSONS):
+for tab,lesson in zip(tabs[2:2+len(LESSONS)],LESSONS):
     with tab:
         st.header(lesson["title"])
         st.caption(lesson["level"]+" · "+lesson["takeaway"])

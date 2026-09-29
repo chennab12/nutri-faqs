@@ -1,6 +1,8 @@
 # Food & Nutrition Compass
 
-A Streamlit learning dashboard with 15 lessons ordered from basic food concepts through advanced meal planning and condition-specific decisions. Every lesson includes a concept table, kitchen example, knowledge check, a focused trusted-reading shortlist with a practical action, an official MedlinePlus topic-feed directory, and an animated chef cartoon. Kitchen tools estimate plate proportions, energy from macronutrients and label totals. The final three tabs compare evidence-based nutrition, Ayurveda-inspired food traditions and homeopathy accurately and practically.
+A Streamlit learning dashboard with a first-tab master cheatsheet and 15 lessons ordered from basic food concepts through advanced meal planning and condition-specific decisions. Every lesson includes a concept table, kitchen example, knowledge check, a focused trusted-reading shortlist with a practical action, an official MedlinePlus topic-feed directory, and an animated chef cartoon. Kitchen tools estimate plate proportions, energy from macronutrients and label totals. The final three tabs compare evidence-based nutrition, Ayurveda-inspired food traditions and homeopathy accurately and practically.
+
+The master cheatsheet includes do/don’t, myth/fact, metrics and next actions, plus WHO, FDA and FoodSafety.gov reference tables linked to original guidance.
 
 The content is general education, reviewed on 29 September 2026. It does not diagnose or prescribe a diet. The app makes clear that conventional medicine and homeopathy are not cooking styles, and that homeopathy has no reliable evidence as treatment for health conditions. Some Ayurvedic preparations may pose contamination or interaction risks. Individual medical conditions require individualized advice.
 
