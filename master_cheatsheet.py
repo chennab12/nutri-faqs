@@ -1,6 +1,7 @@
 """One-screen navigation to the nutrition curriculum and primary references."""
 import streamlit as st
 from content import LESSONS, SOURCES
+from pitfalls import render as pitfalls_tables
 
 # Rows align with LESSONS in content.py. The key metric column is deliberately
 # specific only where a general-purpose quantitative reference is justified.
@@ -68,3 +69,4 @@ def render():
     st.markdown(f"**🌡️ Food thermometer quick chart** · [Full government chart ↗]({SAFETY_URL})")
     st.dataframe([{"Food":food,"Minimum internal temperature":temp} for food,temp in SAFETY],hide_index=True,use_container_width=True)
     st.caption("Use a food thermometer; additional foods and exceptions are in the linked FoodSafety.gov chart.")
+    pitfalls_tables()
